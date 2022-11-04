@@ -47,7 +47,8 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: anywindblows/web:v1
+          tags: ${{ secrets.DOCKER_USERNAME }}/web:v1
+          file: api_yamdb/Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
