@@ -48,7 +48,6 @@ jobs:
         with:
           push: true
           tags: anywindblows/web:v1
-          file: api_yamdb/Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
