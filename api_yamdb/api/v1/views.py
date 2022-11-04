@@ -1,47 +1,32 @@
+from api.v1.filters import TitleFilter
+from api.v1.permissions import (AdminOnly, AdminOrReadOnly,
+                                IsAdminModeratorAuthorOrReadOnly)
+from api.v1.serializers import (CategorySerializer, CommentsSerializer,
+                                CreateTitleSerializer, GenreSerializer,
+                                RegisterDataSerializer, ReviewsSerializer,
+                                TitleSerializer, TokenSerializer,
+                                UserEditSerializer, UserSerializer)
+from api_yamdb.settings import DEFAULT_FROM_EMAIL
+from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.db.models import Avg
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
-from django.contrib.auth.tokens import default_token_generator
-
-from rest_framework.response import Response
-from rest_framework_simplejwt.tokens import AccessToken
-from rest_framework.pagination import PageNumberPagination
-from rest_framework import permissions, status, viewsets, filters
+from rest_framework import filters, permissions, status, viewsets
 from rest_framework.decorators import action, api_view, permission_classes
-from rest_framework.mixins import (
-    CreateModelMixin,
-    DestroyModelMixin,
-    ListModelMixin
-)
+from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
+                                   ListModelMixin)
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
-from api_yamdb.settings import DEFAULT_FROM_EMAIL
-
-from api.v1.permissions import (
-    AdminOnly,
-    AdminOrReadOnly,
-    IsAdminModeratorAuthorOrReadOnly,
-)
-from api.v1.serializers import (
-    CategorySerializer,
-    CommentsSerializer,
-    CreateTitleSerializer,
-    GenreSerializer,
-    RegisterDataSerializer,
-    ReviewsSerializer,
-    TitleSerializer,
-    TokenSerializer,
-    UserEditSerializer,
-    UserSerializer
-)
-
+from rest_framework_simplejwt.tokens import AccessToken
 from reviews.models import Category, Genre, Review, Title
 from users.models import User
-from api.v1.filters import TitleFilter
 
 
 class CategoryViewSet(CreateModelMixin, ListModelMixin,
                       DestroyModelMixin, GenericViewSet):
+
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     permission_classes = [AdminOrReadOnly]

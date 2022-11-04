@@ -1,11 +1,10 @@
-import os
 import csv
+import os
 
-from django.db import IntegrityError
 from django.core.management.base import BaseCommand
-
+from django.db import IntegrityError
+from reviews.models import Category, Comments, Genre, Review, Title
 from users.models import User
-from reviews.models import Category, Comments, Genre, Title, Review
 
 ABS_PATH = os.path.abspath('')
 
