@@ -6,7 +6,6 @@ from api.v1.serializers import (CategorySerializer, CommentsSerializer,
                                 RegisterDataSerializer, ReviewsSerializer,
                                 TitleSerializer, TokenSerializer,
                                 UserEditSerializer, UserSerializer)
-from api_yamdb.settings import DEFAULT_FROM_EMAIL
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.db.models import Avg
@@ -22,6 +21,8 @@ from rest_framework.viewsets import GenericViewSet
 from rest_framework_simplejwt.tokens import AccessToken
 from reviews.models import Category, Genre, Review, Title
 from users.models import User
+
+from api_yamdb.settings import DEFAULT_FROM_EMAIL
 
 
 class CategoryViewSet(CreateModelMixin, ListModelMixin,
