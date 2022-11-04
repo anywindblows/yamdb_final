@@ -1,12 +1,12 @@
 FROM python:3.7-slim
 
-WORKDIR /app
+WORKDIR /api_yamdb
 
 COPY api_yamdb/requirements.txt .
 
 RUN pip3 install -r requirements.txt --no-cache-dir
 
-COPY api_yamdb/ /api_yamdb
+COPY api_yamdb/ .
 
 RUN pwd
 
