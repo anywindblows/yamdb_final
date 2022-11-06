@@ -1,4 +1,4 @@
-![example workflow](https://github.com/github/docs/actions/workflows/yamdb_workflow.yml/badge.svg)
+[![yamdb_final workflow](https://github.com/anywindblows/yamdb_final/actions/workflows/yamdb_workflow.yaml/badge.svg)](https://github.com/anywindblows/yamdb_final/actions/workflows/yamdb_workflow.yaml)
 
 
 ## IP: 178.154.203.237
