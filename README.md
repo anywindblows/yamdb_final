@@ -17,7 +17,7 @@ ____
 
 ## Как запустить проект
 
-### Клонировать репозиторий и перейти в него в командной строке
+### Клонировать и развернуть репозиторий
 
 ```
 git clone git@github.com:anywindblows/infra_actions.git
@@ -36,22 +36,10 @@ sudo apt install docker.io
 ```
 sudo curl -L "https://github.com/docker/compose/releases/download/v2.6.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ```
-
-#### Затем необходимо задать правильные разрешения, чтобы сделать команду docker-compose исполняемой
-
 ```
 sudo chmod +x /usr/local/bin/docker-compose
 ```
-
 #### Скопируйте файлы docker-compose.yaml и nginx/default.conf из проекта на сервер
-
-```
-scp docker-compose.yaml <username>@<host>:/home/<username>/docker-compose.yaml
-```
-
-```
-scp -r nginx <username>@<host>:/home/<username>/
-```
 
 #### Добавьте в Secrets GitHub переменные окружения для работы
 
@@ -63,8 +51,8 @@ DB_PASSWORD=postgres
 DB_PORT=5432
 DB_USER=postgres
 
-DOCKER_PASSWORD=<Docker password>
-DOCKER_USERNAME=<Docker username>
+DOCKER_PASSWORD=<DOCKER_PASSWORD>
+DOCKER_USERNAME=<DOCKER_USERNAME>
 
 USER=<username для подключения к серверу>
 HOST=<IP сервера>
@@ -83,20 +71,9 @@ TELEGRAM_TOKEN=<токен вашего бота>
 docker-compose exec web python3 manage.py collectstatic --noinput
 ```
 
-#### Применить миграции
+#### Создать и применить миграции
 
 ```
+docker-compose exec web python3 manage.py makemigrations
 docker-compose exec web python3 manage.py migrate --noinput
-```
-
-#### Заполнить базу данных
-
-```
-docker-compose exec web python3 manage.py loaddata fixtures.json
-```
-
-#### Создать суперпользователя Django
-
-```
-docker-compose exec web python manage.py createsuperuser
 ```
