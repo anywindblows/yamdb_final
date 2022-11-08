@@ -78,6 +78,5 @@ docker-compose exec web python3 manage.py makemigrations
 docker-compose exec web python3 manage.py migrate --noinput
 ```
 ### Документация проекта
-```
-https://github.com/anywindblows/api_yamdb/blob/master/README.md
-```
+
+README: https://github.com/anywindblows/api_yamdb/blob/master/README.md
