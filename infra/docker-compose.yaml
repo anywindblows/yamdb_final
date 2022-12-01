@@ -1,7 +1,6 @@
 version: '3.8'
 
 services:
-
   db:
     image: postgres:13.0-alpine
     container_name: db
@@ -13,9 +12,6 @@ services:
       - "5432:5432"
 
   web:
-#    build:
-#      context: ../api_yamdb
-#      dockerfile: Dockerfile
     image: anywindblows/api_yamdb:latest
     restart: always
     volumes:
